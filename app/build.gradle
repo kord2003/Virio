@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    productFlavors {
+        buck_bunny {
+            applicationId "com.norigin.bigbuckbunny"
+            resValue "string", "app_name", "Norigin BigBuckBunny"
+            buildConfigField "int", "INITIAL_MOVIE", "0"
+        }
+
+        sintel {
+            applicationId "com.norigin.sintel"
+            resValue "string", "app_name", "Norigin Sintel"
+            buildConfigField "int", "INITIAL_MOVIE", "1"
+        }
+
+        elephants {
+            applicationId "com.norigin.elephant"
+            resValue "string", "app_name", "Norigin Elephants"
+            buildConfigField "int", "INITIAL_MOVIE", "2"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile 'com.android.support:cardview-v7:23.3.0'
+    compile 'com.google.android.exoplayer:exoplayer:r1.5.7'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+}
